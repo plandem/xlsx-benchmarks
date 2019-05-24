@@ -1,4 +1,6 @@
 # Benchmarks for XLSX library
+Some benchmarks for https://github.com/plandem/xlsx and other XLSX libraries in GO
+
 It was not a goal to make best of the best, but the same time it's interesting to know pros/cons. 
 For some cases this library is second, for other - best, but in case of reading huge files - **the only**. 
 
