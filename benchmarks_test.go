@@ -1,7 +1,7 @@
-package xlsx_benchmarks_test
+package xlsx_benchmarks
 
 import (
-	"github.com/360EntSecGroup-Skylar/excelize"
+	"github.com/360EntSecGroup-Skylar/excelize/v2"
 	"github.com/tealeg/xlsx"
 	"math/rand"
 	"testing"
@@ -11,7 +11,7 @@ import (
 	"github.com/plandem/xlsx/format"
 )
 
-const simpleFile = "./test_files/simple.xlsx"
+const simpleFile = "./test_files/example_simple.xlsx"
 const bigFile = "./test_files/example_big.xlsx"
 const hugeFile = "./test_files/example_huge.xlsx"
 

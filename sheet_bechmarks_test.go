@@ -1,4 +1,4 @@
-package xlsx_benchmarks_test
+package xlsx_benchmarks
 
 import (
 	"github.com/plandem/xlsx"
@@ -18,7 +18,7 @@ func readSheet(sheet xlsx.Sheet) {
 
 func BenchmarkSpreadsheet_Sheet(b *testing.B) {
 	b.ReportAllocs()
-	xl, err := xlsx.Open(xlsx_benchmarks.hugeFile)
+	xl, err := xlsx.Open(hugeFile)
 	if err != nil {
 		panic(err)
 	}
@@ -32,7 +32,7 @@ func BenchmarkSpreadsheet_Sheet(b *testing.B) {
 
 func BenchmarkSpreadsheet_SheetReader(b *testing.B) {
 	b.ReportAllocs()
-	xl, err := xlsx.Open(xlsx_benchmarks.hugeFile)
+	xl, err := xlsx.Open(hugeFile)
 	if err != nil {
 		panic(err)
 	}
