@@ -8,7 +8,7 @@ import (
 	"time"
 
 	ooxml "github.com/plandem/xlsx"
-	"github.com/plandem/xlsx/format"
+	"github.com/plandem/xlsx/format/styles"
 )
 
 const simpleFile = "./test_files/example_simple.xlsx"
@@ -173,32 +173,32 @@ func BenchmarkLibsRandomSetStyle(b *testing.B) {
 		{"xlsx", xlsxOpen, func(f interface{}) interface{} {
 			xl := f.(*ooxml.Spreadsheet)
 
-			style := format.NewStyles(
-				format.Font.Name("Calibri"),
-				format.Font.Size(12),
-				format.Font.Color("#FF0000"),
-				format.Font.Scheme(format.FontSchemeMinor),
-				format.Font.Family(format.FontFamilySwiss),
+			style := styles.New(
+				styles.Font.Name("Calibri"),
+				styles.Font.Size(12),
+				styles.Font.Color("#FF0000"),
+				styles.Font.Scheme(styles.FontSchemeMinor),
+				styles.Font.Family(styles.FontFamilySwiss),
 
-				format.Fill.Type(format.PatternTypeNone),
+				styles.Fill.Type(styles.PatternTypeNone),
 
-				format.Alignment.VAlign(format.VAlignBottom),
-				format.Alignment.HAlign(format.HAlignFill),
-				format.Border.Color("#ff00ff"),
-				format.Border.Type(format.BorderStyleDashDot),
-				format.Protection.Hidden,
-				format.Protection.Locked,
-				//format.NumberFormat("#.### usd"),
-				format.Fill.Type(format.PatternTypeDarkDown),
-				format.Fill.Color("#FFFFFF"),
-				format.Fill.Background("#FF0000"),
+				styles.Alignment.VAlign(styles.VAlignBottom),
+				styles.Alignment.HAlign(styles.HAlignFill),
+				styles.Border.Color("#ff00ff"),
+				styles.Border.Type(styles.BorderStyleDashDot),
+				styles.Protection.Hidden,
+				styles.Protection.Locked,
+				//styles.NumberFormat("#.### usd"),
+				styles.Fill.Type(styles.PatternTypeDarkDown),
+				styles.Fill.Color("#FFFFFF"),
+				styles.Fill.Background("#FF0000"),
 			)
 
-			return xl.AddFormatting(style)
+			return xl.AddStyles(style)
 		}, func(f interface{}, s interface{}, ss interface{}, maxCols, maxRows int) {
 			sheet := s.(ooxml.Sheet)
-			styleId := ss.(format.DirectStyleID)
-			sheet.Cell(rand.Intn(maxCols), rand.Intn(maxRows)).SetFormatting(styleId)
+			styleId := ss.(styles.DirectStyleID)
+			sheet.Cell(rand.Intn(maxCols), rand.Intn(maxRows)).SetStyles(styleId)
 		}},
 	}
 

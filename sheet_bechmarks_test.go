@@ -22,6 +22,7 @@ func BenchmarkSpreadsheet_Sheet(b *testing.B) {
 	if err != nil {
 		panic(err)
 	}
+	defer xl.Close()
 
 	for i := 0; i < b.N; i++ {
 		sheet := xl.Sheet(0)
@@ -36,6 +37,7 @@ func BenchmarkSpreadsheet_SheetReader(b *testing.B) {
 	if err != nil {
 		panic(err)
 	}
+	defer xl.Close()
 
 	for i := 0; i < b.N; i++ {
 		sheet := xl.Sheet(0, xlsx.SheetModeStream)
